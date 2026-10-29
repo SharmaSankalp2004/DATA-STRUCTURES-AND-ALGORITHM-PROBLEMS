@@ -1,0 +1,36 @@
+# Container With Most Water
+
+## Problem
+Given an integer array `height` of length `n`, where each element represents the height of a vertical line, find two lines that, together with the x-axis, form a container that holds the maximum amount of water.
+
+## Approach: Two Pointers
+
+We use the **Two Pointers** technique to solve the problem efficiently.
+
+### Algorithm
+1. Initialize two pointers: `l` at the beginning and `r` at the end of the array.
+2. Calculate the area using the formula:
+
+   `area = (r - l) * min(height[l], height[r])`
+
+3. Update the maximum area using `res = max(res, area)`.
+4. Move the pointer pointing to the shorter line inward because the shorter line limits the amount of water the container can hold.
+5. Repeat until the two pointers meet.
+6. Return `res`.
+
+
+## Complexity Analysis
+
+- **Time Complexity:** `O(n)` — Each pointer moves through the array at most once.
+- **Space Complexity:** `O(1)` — Only a constant amount of extra space is used.
+
+## Key Concepts
+- Two Pointers
+- Greedy Algorithm
+- Array Traversal
+- Maximum Area Calculation
+
+## LeetCode
+[Container With Most Water — LeetCode 11](https://leetcode.com/problems/container-with-most-water/)
+
+
