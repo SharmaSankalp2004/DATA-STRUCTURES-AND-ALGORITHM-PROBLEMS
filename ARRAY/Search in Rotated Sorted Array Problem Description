@@ -1,0 +1,36 @@
+# Search in Rotated Sorted Array
+
+## Problem
+Given an integer array `nums` sorted in ascending order and rotated at an unknown pivot, find the index of a given `target`.
+
+If the target is not present, return `-1`.
+
+## Approach: Modified Binary Search
+
+We use **Binary Search** with two pointers to achieve an efficient search in a rotated sorted array.
+
+### Algorithm
+1. Initialize `left = 0` and `right = len(nums) - 1`.
+2. Calculate the middle index using `mid = (left + right) // 2`.
+3. If `nums[mid] == target`, return `mid`.
+4. Check which half of the array is sorted:
+   - **Left half sorted:** If `nums[left] <= nums[mid]`, check whether the target lies between `nums[left]` and `nums[mid]`.
+   - **Right half sorted:** Otherwise, check whether the target lies between `nums[mid]` and `nums[right]`.
+5. Update the pointers to continue searching in the appropriate half.
+6. If the target is not found, return `-1`.
+
+
+## Complexity Analysis
+
+- **Time Complexity:** `O(log n)` — The search space is reduced by approximately half in each iteration.
+- **Space Complexity:** `O(1)` — Only a constant amount of extra space is used.
+
+## Key Concepts
+- Binary Search
+- Two Pointers
+- Rotated Sorted Arrays
+- Conditional Search Space Reduction
+
+## LeetCode
+[Search in Rotated Sorted Array — LeetCode 33](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
