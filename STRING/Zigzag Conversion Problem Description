@@ -1,0 +1,93 @@
+LeetCode 6 – Zigzag Conversion
+Problem Description
+
+The string "PAYPALISHIRING" is written in a zigzag pattern across a given number of rows and then read row by row.
+
+Given a string s and an integer numRows, return the string formed by reading the zigzag pattern row by row.
+
+Approach: Row-by-Row Traversal (Mathematical Pattern)
+
+This solution uses a mathematical observation to generate the zigzag pattern without actually constructing a 2D matrix.
+
+The characters follow a repeating cycle when traversing the zigzag pattern.
+
+The cycle length is:
+
+increment
+=
+2
+×
+(
+numRows
+−
+1
+)
+
+For each row:
+
+The first character appears at the current index.
+The next character in the same row appears after one full cycle.
+For middle rows, an additional character appears diagonally between consecutive vertical characters.
+Algorithm
+If numRows == 1, return the original string because no zigzag movement is needed.
+Initialize an empty string res.
+Calculate the cycle length using 2 * (numRows - 1).
+Iterate through each row:
+Start from the current row index.
+Traverse the string using the cycle length as the increment.
+Append the character at the current index.
+For middle rows, calculate and append the diagonal character if it exists.
+Return the resulting string.
+
+Example
+
+Input:
+
+python
+s = "PAYPALISHIRING"
+numRows = 3
+
+
+Zigzag Pattern:
+
+text
+P   A   H   N
+A P L S I I G
+Y   I   R
+
+
+Output:
+
+python
+"PAHNAPLSIIGYIR"
+
+Complexity Analysis
+
+Let n be the length of the input string.
+
+Time Complexity: O(n) – Each character is visited and appended exactly once.
+Space Complexity: O(n) – The result string requires space proportional to the input length. The auxiliary variables use O(1) space.
+Key Takeaway
+
+The Zigzag Conversion problem can be solved efficiently using mathematical indexing instead of constructing a 2D matrix.
+
+The important observation is the repeating cycle:
+
+2
+×
+(
+numRows
+−
+1
+)
+
+For middle rows, diagonal characters are calculated using:
+
+𝑖
++
+increment
+−
+2
+𝑟
+
+This approach achieves linear time complexity and avoids the overhead of explicitly building the zigzag pattern.
