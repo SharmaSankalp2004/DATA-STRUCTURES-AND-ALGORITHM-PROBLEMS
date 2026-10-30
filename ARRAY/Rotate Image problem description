@@ -1,0 +1,81 @@
+LeetCode 48 – Rotate Image
+Problem Description
+
+Given an n × n 2D matrix representing an image, rotate the image 90 degrees clockwise.
+
+The rotation must be done in-place, meaning you must modify the input matrix directly without creating another matrix.
+
+Approach: Transpose + Reverse
+
+This solution uses two operations to rotate the matrix 90 degrees clockwise:
+
+Transpose the Matrix: Swap elements across the main diagonal.
+Reverse Each Row: Reverse every row of the transposed matrix.
+
+Combining these two operations produces a 90-degree clockwise rotation without using extra matrix space.
+
+Example
+
+Input:
+
+python
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+
+Output:
+
+python
+[
+    [7, 4, 1],
+    [8, 5, 2],
+    [9, 6, 3]
+]
+
+Step-by-Step Explanation
+
+Step 1: Original Matrix
+
+text
+1 2 3
+4 5 6
+7 8 9
+
+
+Step 2: Transpose the Matrix
+
+Swap elements across the main diagonal.
+
+text
+1 4 7
+2 5 8
+3 6 9
+
+
+Step 3: Reverse Each Row
+
+text
+7 4 1
+8 5 2
+9 6 3
+
+
+The matrix is now rotated 90 degrees clockwise.
+
+Complexity Analysis
+
+Let n be the number of rows (and columns) in the square matrix.
+
+Time Complexity: O(n²) – Transposing visits the upper triangular portion of the matrix, and reversing each row takes O(n²) overall.
+Space Complexity: O(1) – The rotation is performed in-place without using any additional matrix.
+Key Takeaway
+
+A 90-degree clockwise matrix rotation can be achieved efficiently using two simple operations:
+
+Transpose the matrix.
+Reverse each row.
+
+This is an optimal in-place solution with O(n²) time complexity and O(1) auxiliary space.
