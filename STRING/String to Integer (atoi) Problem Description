@@ -1,0 +1,138 @@
+LeetCode 8 – String to Integer (atoi)
+Problem Description
+
+Implement the myAtoi(string s) function, which converts a string into a 32-bit signed integer.
+
+The conversion follows these rules:
+
+Ignore leading whitespace characters.
+Check for an optional + or - sign.
+Read digits until a non-digit character is encountered or the string ends.
+If no digits are found, return 0.
+If the converted integer exceeds the 32-bit signed integer range, clamp it to INT_MAX or INT_MIN.
+
+The valid 32-bit signed integer range is:
+
+−
+2
+31
+≤
+𝑥
+≤
+2
+31
+−
+1
+Approach: Iterative Parsing
+
+This solution uses an iterative approach to process the string character by character.
+
+Instead of converting the entire string directly, we manually extract digits and build the integer while checking for overflow.
+
+Algorithm
+Handle an empty string by returning 0.
+Define the 32-bit integer boundaries:
+INT_MAX = 2³¹ - 1
+INT_MIN = -2³¹
+Skip all leading whitespace characters.
+Check for an optional sign:
++ indicates a positive number.
+- indicates a negative number.
+If no sign exists, assume positive.
+Initialize res = 0 and iterate through the digits:
+Convert the current character into an integer.
+Update the result using res = res * 10 + digit.
+Check whether the signed result exceeds the 32-bit integer boundaries.
+Return the appropriate boundary if overflow occurs.
+Stop when a non-digit character is encountered.
+Return the result multiplied by the sign.
+
+Examples
+
+Example 1:
+
+Input:
+
+python
+s = "42"
+
+
+Output:
+
+python
+42
+
+
+Example 2:
+
+Input:
+
+python
+s = "   -042"
+
+
+Output:
+
+python
+-42
+
+
+Example 3:
+
+Input:
+
+python
+s = "1337c0d3"
+
+
+Output:
+
+python
+1337
+
+
+Example 4:
+
+Input:
+
+python
+s = "words and 987"
+
+
+Output:
+
+python
+0
+
+
+Example 5:
+
+Input:
+
+python
+s = "-91283472332"
+
+
+Output:
+
+python
+-2147483648
+
+Complexity Analysis
+
+Let n be the length of the input string.
+
+Time Complexity: O(n) – The algorithm scans the string once, processing each character at most once.
+Space Complexity: O(1) – Only a constant number of variables are used.
+Key Takeaway
+
+The String to Integer (atoi) problem demonstrates how to implement manual string parsing while handling signs, whitespace, invalid characters, and integer overflow.
+
+The important concepts are:
+
+Character-by-character parsing.
+Handling positive and negative signs.
+Stopping at the first non-digit character.
+Clamping values within the 32-bit signed integer range.
+
+This approach solves the problem in linear time with constant auxiliary space.
