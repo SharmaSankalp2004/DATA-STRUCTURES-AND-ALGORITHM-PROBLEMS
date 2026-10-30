@@ -1,0 +1,63 @@
+LeetCode 5 – Longest Palindromic Substring
+Problem Description
+
+Given a string s, return the longest palindromic substring in s.
+
+A palindrome is a string that reads the same forward and backward.
+
+Approach: Expand Around Center
+
+This solution uses the Expand Around Center technique to find the longest palindromic substring efficiently.
+
+The key observation is that every palindrome has a center. A palindrome can have:
+
+Odd length: A single character is the center (e.g., "racecar").
+Even length: Two characters form the center (e.g., "abba").
+
+For every index, we expand outward from both possible centers and check whether the characters on the left and right are equal.
+
+Algorithm
+Initialize res as an empty string and reslen = 0 to track the longest palindrome.
+Iterate through every index i in the string.
+Check odd-length palindromes:
+Set both pointers l and r to i.
+Expand outward while the characters match.
+Update the longest palindrome whenever a longer one is found.
+Check even-length palindromes:
+Set l = i and r = i + 1.
+Expand outward while the characters match.
+Update the longest palindrome whenever a longer one is found.
+Return res.
+
+
+Example
+
+Input:
+
+python
+s = "babad"
+
+
+Output:
+
+python
+"bab"
+
+
+Explanation:
+
+The longest palindromic substrings are "bab" and "aba", both having a length of 3.
+
+Either answer is valid.
+
+Complexity Analysis
+
+Let n be the length of the input string.
+
+Time Complexity: O(n²) – We consider two possible centers at each index and expand outward. In the worst case, each expansion takes O(n) time.
+Space Complexity: O(1) auxiliary space – Only a constant number of variables are used, excluding the space required to store the resulting substring.
+Key Takeaway
+
+The Expand Around Center technique is an intuitive and efficient way to solve palindrome-related problems.
+
+By checking both odd-length and even-length centers, we can find the longest palindromic substring in O(n²) time without using additional data structures or dynamic programming.
