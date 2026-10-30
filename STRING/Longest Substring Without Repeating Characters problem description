@@ -1,0 +1,62 @@
+LeetCode 3 – Longest Substring Without Repeating Characters
+Problem Description
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+A substring is a contiguous sequence of characters within a string.
+
+Approach: Sliding Window + Hash Set
+
+This solution uses the Sliding Window technique with a Hash Set to efficiently track unique characters.
+
+We maintain a window using two pointers:
+
+l: Left pointer representing the start of the window.
+r: Right pointer representing the end of the window.
+
+The Hash Set stores the characters currently present in the window.
+
+Whenever a duplicate character is encountered, move the left pointer forward and remove characters from the set until the duplicate is eliminated.
+
+Algorithm
+Initialize an empty Hash Set charSet to store unique characters.
+Initialize l = 0 as the left pointer and res = 0 to track the maximum length.
+Iterate through the string using the right pointer r.
+If the current character already exists in the set:
+Remove the character at the left pointer from the set.
+Move the left pointer one position forward.
+Repeat until the duplicate character is removed.
+Add the current character to the set.
+Update the maximum substring length using r - l + 1.
+Return res.
+
+
+Example
+
+Input:
+
+python
+s = "abcabcbb"
+
+
+Output:
+
+python
+3
+
+
+Explanation:
+
+The longest substring without repeating characters is "abc", which has a length of 3.
+
+Complexity Analysis
+
+Let n be the length of the input string.
+
+Time Complexity: O(n) – Each character is added to and removed from the Hash Set at most once.
+Space Complexity: O(min(n, k)) – The Hash Set stores at most the number of distinct characters in the string, where k is the size of the character set.
+Key Takeaway
+
+The Sliding Window technique helps solve substring problems efficiently by maintaining a valid window of unique characters.
+
+Using a Hash Set allows constant-time average membership checks, making it possible to solve the problem in linear time without checking every possible substring.
