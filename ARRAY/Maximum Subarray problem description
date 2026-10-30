@@ -1,0 +1,56 @@
+LeetCode 53 – Maximum Subarray
+Problem Description
+
+Given an integer array nums, find the subarray with the largest sum and return its sum.
+
+A subarray is a contiguous, non-empty sequence of elements within an array.
+
+Approach: Kadane's Algorithm
+
+This solution uses Kadane's Algorithm, a dynamic programming technique that efficiently finds the maximum subarray sum.
+
+The main idea is to maintain a running sum and reset it whenever it becomes negative, since a negative running sum cannot improve the sum of a future subarray.
+
+Algorithm
+Initialize res with the first element to handle arrays containing only negative numbers.
+Initialize total = 0 to track the current subarray sum.
+Iterate through each element in nums:
+If total is negative, reset it to 0.
+Add the current element to total.
+Update res with the maximum of res and total.
+Return res.
+
+
+Example
+
+Input:
+
+python
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+
+Output:
+
+python
+6
+
+
+Explanation:
+
+The contiguous subarray [4, -1, 2, 1] has the largest sum:
+
+4 + (-1) + 2 + 1 = 6
+
+Complexity Analysis
+
+Let n be the number of elements in the input array.
+
+Time Complexity: O(n) – The algorithm iterates through the array exactly once.
+Space Complexity: O(1) – Only two variables are used to maintain the running sum and maximum sum.
+Key Takeaway
+
+Kadane's Algorithm finds the maximum subarray sum in a single pass.
+
+The key insight is that a negative running sum should be discarded because starting a new subarray is always better than carrying a negative sum forward.
+
+This makes it an efficient solution with linear time complexity and constant auxiliary space.
