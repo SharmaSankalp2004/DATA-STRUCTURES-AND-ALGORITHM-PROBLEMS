@@ -1,0 +1,83 @@
+LeetCode 12 – Integer to Roman
+Problem Description
+
+Given an integer num, convert it into a Roman numeral.
+
+Roman numerals are represented using the following symbols:
+
+Symbol	Value
+I	1
+V	5
+X	10
+L	50
+C	100
+D	500
+M	1000
+
+Some numbers use subtractive notation, where a smaller value appears before a larger value:
+
+IV = 4
+IX = 9
+XL = 40
+XC = 90
+CD = 400
+CM = 900
+Approach: Greedy Algorithm
+
+This solution uses a Greedy Algorithm to convert an integer into a Roman numeral.
+
+The main idea is to always select the largest possible Roman numeral value that can be subtracted from the given number.
+
+We maintain a list of value-symbol pairs in descending order, including the special subtractive combinations.
+
+Algorithm
+Create a list of Roman numeral value-symbol pairs in descending order.
+Initialize an empty list res to store the Roman numeral symbols.
+Iterate through each (value, symbol) pair:
+Calculate how many times the current value fits into num using integer division.
+Append the corresponding symbol multiplied by that count.
+Subtract the converted value from num.
+Stop when num becomes 0.
+Join all symbols and return the resulting Roman numeral string.
+
+
+Example
+
+Input:
+
+python
+num = 3749
+
+
+Output:
+
+python
+"MMMDCCXLIX"
+
+
+Explanation:
+
+The number 3749 is converted as follows:
+
+3000 = MMM
+700 = DCC
+40 = XL
+9 = IX
+
+Combining them:
+
+MMM + DCC + XL + IX = MMMDCCXLIX
+
+Complexity Analysis
+
+Let n be the input integer and k be the number of Roman numeral value-symbol pairs (13).
+
+Time Complexity: O(k + L), where L is the length of the resulting Roman numeral. Since k is fixed at 13, this is effectively O(L).
+Space Complexity: O(L) – The result list stores the generated Roman numeral characters.
+Key Takeaway
+
+The Greedy Algorithm works well for Roman numeral conversion because the largest possible valid symbol combination is always selected first.
+
+By including subtractive combinations such as IV, IX, XL, XC, CD, and CM in descending order, the conversion becomes simple and efficient.
+
+This solution avoids complicated conditional statements and uses a clean value-symbol mapping.
