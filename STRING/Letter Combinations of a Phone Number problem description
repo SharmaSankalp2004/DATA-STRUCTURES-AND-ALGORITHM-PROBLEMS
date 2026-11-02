@@ -1,0 +1,52 @@
+# Letter Combinations of a Phone Number
+
+## Problem Statement
+Given a string containing digits from `2` to `9`, return all possible letter combinations that the numbers could represent.
+
+The mapping follows the standard telephone keypad, where each digit corresponds to a set of letters.
+
+## Approach: Backtracking
+
+This problem is solved using **Backtracking (Depth-First Search)**.
+
+### Algorithm
+1. Create a dictionary mapping digits to their corresponding letters.
+2. Initialize an empty result list.
+3. Use a recursive function `backtrack(i, curstr)`:
+   - If the current string length equals the input length, add it to the result.
+   - Otherwise, iterate through all letters mapped to the current digit.
+   - Append each letter to the current string and recursively process the next digit.
+4. Return the result list.
+
+```
+
+## Example
+
+**Input:**
+```python
+digits = "23"
+```
+
+**Output:**
+```python
+["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+```
+
+## Complexity Analysis
+
+Let `n` be the number of digits.
+
+- **Time Complexity:** O(4ⁿ × n) — at most four choices per digit, with string construction and result storage.
+- **Space Complexity:** O(n) auxiliary recursion space, excluding the output list.
+
+## Key Concepts
+- Backtracking
+- Recursion
+- Depth-First Search (DFS)
+- Hash Map / Dictionary
+- String Manipulation
+
+## LeetCode
+Problem: [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
+Difficulty: Medium
