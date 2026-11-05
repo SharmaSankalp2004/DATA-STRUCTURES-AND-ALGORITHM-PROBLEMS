@@ -1,0 +1,51 @@
+# Generate Parentheses
+
+## Problem Description
+Given `n` pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+**Example:**
+
+Input:
+```python
+n = 3
+```
+
+Output:
+```python
+["((()))", "(()())", "(())()", "()(())", "()()()"]
+```
+
+## Approach: Backtracking (Recursion)
+
+We use a recursive backtracking approach to generate all valid combinations of parentheses.
+
+We maintain two variables:
+- `left`: Number of opening parentheses remaining.
+- `right`: Number of closing parentheses remaining.
+
+### Algorithm
+1. Start with an empty string and `n` opening and closing parentheses.
+2. If `left > 0`, add an opening parenthesis `(` and recursively explore.
+3. If `right > 0` and `left < right`, add a closing parenthesis `)`.
+4. When both `left` and `right` become zero, add the generated string to the answer list.
+5. Return the list containing all valid combinations.
+
+
+## Complexity Analysis
+
+- **Time Complexity:** \(O(4^n / \sqrt{n})\) — Catalan number of valid combinations, with \(O(n)\) work per generated string.
+- **Space Complexity:** \(O(n)\) auxiliary recursion space, excluding the output list.
+
+## Key Concepts
+- Backtracking
+- Recursion
+- Depth First Search (DFS)
+- Catalan Numbers
+- String Manipulation
+
+## LeetCode
+[Generate Parentheses - LeetCode 22](https://leetcode.com/problems/generate-parentheses/)
+
+---
+
+**Learning Outcome:** Practiced generating valid combinations using recursion and backtracking while avoiding invalid parenthesis sequences.
