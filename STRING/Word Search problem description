@@ -1,0 +1,129 @@
+# 79. Word Search
+
+## Problem Statement
+
+Given an `m x n` grid of characters `board` and a string `word`, return `true` if the word exists in the grid.
+
+The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same cell may not be used more than once in a single word.
+
+---
+
+## Approach
+
+This solution uses **Depth-First Search (DFS) with Backtracking**.
+
+Starting from every cell in the grid, we perform a DFS to check whether the target word can be formed.
+
+A `path` set is used to keep track of visited cells during the current search, ensuring that the same cell is not reused.
+
+### Steps
+
+1. Iterate through every cell in the board.
+2. Start a DFS from each cell.
+3. During DFS:
+   - Stop if all characters in the word are matched.
+   - Return `False` if:
+     - The position is out of bounds.
+     - The character does not match.
+     - The cell has already been visited.
+4. Mark the current cell as visited.
+5. Explore all four directions:
+   - Up
+   - Down
+   - Left
+   - Right
+6. Remove the current cell from the visited set (backtracking).
+7. If any DFS returns `True`, the word exists.
+
+---
+
+## Algorithm
+
+```
+For each cell in the board:
+    Start DFS
+
+DFS(row, col, index):
+
+    If index == length of word:
+        return True
+
+    If position is invalid OR
+       character doesn't match OR
+       already visited:
+        return False
+
+    Mark current cell as visited
+
+    Search in:
+        Up
+        Down
+        Left
+        Right
+
+    Remove current cell from visited
+
+    Return result
+```
+
+---
+
+## Complexity Analysis
+
+- **Time Complexity:** `O(m × n × 4^L)`
+- **Space Complexity:** `O(L)`
+
+where:
+- `m` = number of rows
+- `n` = number of columns
+- `L` = length of the word
+
+---
+
+## Example
+
+### Input
+
+```
+board =
+[
+ ["A","B","C","E"],
+ ["S","F","C","S"],
+ ["A","D","E","E"]
+]
+
+word = "ABCCED"
+```
+
+### Output
+
+```
+True
+```
+
+### Explanation
+
+A valid path exists:
+
+```
+A → B → C
+        ↓
+        C
+        ↓
+        E ← D
+```
+
+---
+
+## Concepts Used
+
+- Depth-First Search (DFS)
+- Backtracking
+- Recursion
+- Matrix Traversal
+
+---
+
+## Tags
+
+`Backtracking` `DFS` `Matrix` `Recursion` `LeetCode 79`
