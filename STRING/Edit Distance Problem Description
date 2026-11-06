@@ -1,0 +1,80 @@
+Edit Distance
+Problem Description
+
+Given two strings word1 and word2, return the minimum number of operations required to convert word1 into word2.
+
+You can perform the following three operations:
+
+Insert a character.
+Delete a character.
+Replace a character.
+
+The goal is to find the minimum number of operations needed to transform one string into the other.
+
+Approach: Dynamic Programming (Bottom-Up)
+
+The solution uses a 2D Dynamic Programming table to calculate the minimum edit distance between two strings.
+
+How It Works
+Create a DP table of size (len(word1) + 1) × (len(word2) + 1).
+Initialize the base cases:
+If word2 is exhausted, delete all remaining characters from word1.
+If word1 is exhausted, insert all remaining characters of word2.
+Traverse both strings from right to left.
+For every pair of characters:
+If the characters match, no operation is required. Take the diagonal value.
+Otherwise, calculate the minimum cost among:
+Delete: cache[i + 1][j]
+Insert: cache[i][j + 1]
+Replace: cache[i + 1][j + 1]
+Add 1 to account for the chosen operation.
+Return cache[0][0], which contains the minimum edit distance.
+
+Example
+
+Input:
+
+python
+word1 = "horse"
+word2 = "ros"
+
+
+Output:
+
+python
+3
+
+
+Explanation:
+
+One possible sequence of operations:
+
+horse → rorse (replace h with r)
+rorse → rose (delete r)
+rose → ros (delete e)
+
+A total of 3 operations are required.
+
+Complexity Analysis
+
+Let:
+
+M = length of word1.
+N = length of word2.
+Complexity	Analysis
+Time Complexity	O(M × N)
+Space Complexity	O(M × N)
+Time: Each cell of the DP table is calculated exactly once.
+Space: The 2D DP table stores (M + 1) × (N + 1) values.
+Key Concepts
+Dynamic Programming
+2D DP
+String Manipulation
+Edit Distance
+Bottom-Up Approach
+Optimal Substructure
+Platform
+
+LeetCode – 72. Edit Distance
+
+Approach Summary: Bottom-up Dynamic Programming efficiently finds the minimum number of insertions, deletions, and replacements needed to transform one string into another.
