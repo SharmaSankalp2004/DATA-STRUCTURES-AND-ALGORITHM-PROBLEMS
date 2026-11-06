@@ -1,0 +1,54 @@
+Multiply Strings
+Problem Description
+
+Given two non-negative integers num1 and num2, represented as strings, return the product of num1 and num2, also represented as a string.
+
+You must not convert the input strings directly into integers or use built-in BigInteger libraries.
+
+Approach: String Traversal and Arithmetic
+
+The solution converts each string into an integer manually by iterating through its digits.
+
+For every digit:
+
+Multiply the current number by 10 to shift its digits left.
+Add the integer value of the current digit using ord(i) - 48.
+
+After converting both strings, multiply the two numbers and convert the result back into a string.
+
+
+Complexity Analysis
+
+Let n be the length of num1 and m be the length of num2.
+
+Time Complexity: O(n + m) for string-to-integer conversion, excluding the cost of multiplication and integer conversion.
+Space Complexity: O(n + m) for the resulting integer representations and output.
+Example
+
+Input:
+
+python
+num1 = "123"
+num2 = "456"
+
+
+Output:
+
+python
+"56088"
+
+
+Explanation:
+
+123 × 456 = 56088.
+
+Key Concepts
+String Traversal
+ASCII Value Conversion
+Basic Arithmetic
+Number Representation
+Platform
+
+LeetCode – 43. Multiply Strings
+
+Note: This implementation uses Python's built-in arbitrary-precision integers after manually parsing the strings. It does not implement multiplication digit by digit, so it may not satisfy the problem's intended restriction on converting strings into integers.
