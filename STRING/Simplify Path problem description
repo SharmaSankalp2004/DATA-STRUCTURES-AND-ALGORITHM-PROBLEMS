@@ -1,0 +1,75 @@
+Simplify Path
+Problem Description
+
+Given an absolute Unix-style file path that begins with a slash /, convert it into its simplified canonical path.
+
+In a Unix-style file system:
+
+. refers to the current directory.
+.. refers to the parent directory.
+Multiple consecutive slashes (//) are treated as a single slash.
+Any other sequence of characters represents a directory name.
+
+The simplified path must:
+
+Start with a single /.
+Have no trailing slash unless it is the root directory.
+Have no . or .. directory references.
+Approach: Stack
+
+The solution uses a stack to process the path components and maintain the canonical directory structure.
+
+How It Works
+Split the input path using / to get individual components.
+Initialize an empty stack.
+Iterate through each component:
+If the component is empty or ., ignore it.
+If the component is .., remove the top directory from the stack if it is not empty.
+Otherwise, push the directory name onto the stack.
+Join the remaining stack elements using /.
+Add a leading / to construct the simplified canonical path.
+
+The stack ensures that parent directory references are handled correctly without moving above the root directory.
+
+Example
+
+Input:
+
+python
+path = "/home//foo/../bar/"
+
+
+Output:
+
+python
+"/home/bar"
+
+
+Explanation:
+
+/home adds home to the stack.
+// is ignored.
+foo is added to the stack.
+.. removes foo.
+bar is added to the stack.
+The trailing slash is ignored.
+
+The final simplified path is /home/bar.
+
+Complexity Analysis
+
+Let N be the length of the input path.
+
+Time Complexity: O(N) — Splitting, processing, and joining the path components take linear time overall.
+Space Complexity: O(N) — The components list and stack may store up to O(N) characters.
+Key Concepts
+Stack
+String Manipulation
+Path Normalization
+Simulation
+Data Structures
+Platform
+
+LeetCode – 71. Simplify Path
+
+Approach Summary: A stack efficiently handles directory names, current directory references (.), and parent directory references (..) to construct the canonical Unix path.
