@@ -1,0 +1,69 @@
+# Reverse Words in a String
+
+## Problem Description
+Given an input string `s`, reverse the order of the words.
+
+- A word is defined as a sequence of non-space characters.
+- Words are separated by one or more spaces.
+- The returned string should contain words separated by a single space.
+- Leading and trailing spaces should be removed.
+
+## Python Solution
+
+```python
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()
+        words.reverse()
+        return ' '.join(words)
+```
+
+## Approach: Split, Reverse, and Join
+
+1. **Split:** Use `split()` to divide the string into individual words. It automatically handles multiple spaces and removes leading/trailing spaces.
+2. **Reverse:** Use `reverse()` to reverse the order of words in the list.
+3. **Join:** Use `' '.join(words)` to combine the reversed words with a single space.
+
+## Example
+
+**Input:**
+```python
+s = "the sky is blue"
+```
+
+**Output:**
+```python
+"blue is sky the"
+```
+
+**Another Example:**
+
+Input:
+```python
+s = "  hello world  "
+```
+
+Output:
+```python
+"world hello"
+```
+
+## Complexity Analysis
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | Splitting, reversing, and joining take linear time. |
+| Space | O(n) | Extra space is required to store the words. |
+
+## Key Concepts
+- String Manipulation
+- Python `split()` Method
+- List Reversal
+- String `join()` Method
+
+## LeetCode
+**Problem:** Reverse Words in a String
+
+**Difficulty:** Medium
+
+**Language:** Python 3
