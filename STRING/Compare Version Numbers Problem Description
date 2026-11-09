@@ -1,0 +1,85 @@
+# Compare Version Numbers
+
+## Problem Description
+Given two version strings, `version1` and `version2`, compare them and determine which version is greater.
+
+Each version string consists of revisions separated by dots (`.`). Each revision is interpreted as an integer, ignoring leading zeros.
+
+Return:
+- `-1` if `version1` is smaller than `version2`.
+- `1` if `version1` is greater than `version2`.
+- `0` if both versions are equal.
+
+If one version has fewer revisions, treat its missing revisions as `0`.
+
+## Python Solution
+
+```python
+class Solution:
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1 = list(map(int, version1.split('.')))
+        v2 = list(map(int, version2.split('.')))
+        n = max(len(v1), len(v2))
+        
+        for i in range(n):
+            num1 = v1[i] if i < len(v1) else 0
+            num2 = v2[i] if i < len(v2) else 0
+            
+            if num1 < num2:
+                return -1
+            if num1 > num2:
+                return 1
+                
+        return 0
+```
+
+## Approach: Split, Convert, and Compare
+
+1. **Split:** Use `split('.')` to divide both version strings into individual revisions.
+2. **Convert:** Use `map(int, ...)` to convert each revision into an integer. This automatically handles leading zeros.
+3. **Find Maximum Length:** Calculate the maximum number of revisions between the two versions.
+4. **Compare Revisions:** Iterate through each revision and compare corresponding values.
+5. **Handle Missing Revisions:** If one version has fewer revisions, consider its missing revisions as `0`.
+6. **Return Result:** Return `-1`, `1`, or `0` based on the comparison.
+
+## Example
+
+**Input:**
+```python
+version1 = "1.2"
+version2 = "1.10"
+```
+
+**Output:**
+```python
+-1
+```
+
+**Explanation:**
+
+- First revision: `1 == 1`
+- Second revision: `2 < 10`
+
+Therefore, `version1` is smaller than `version2`.
+
+## Complexity Analysis
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n + m) | Splitting and comparing both version strings. |
+| Space | O(n + m) | Lists are created to store the integer revisions. |
+
+Here, `n` and `m` represent the lengths of the two version strings.
+
+## Key Concepts
+- String Manipulation
+- String Splitting
+- Type Conversion
+- Array Traversal
+- Conditional Comparison
+- Edge Case Handling
+
+## LeetCode
+- **Problem:** Compare Version Numbers
+- **Difficulty:** Medium
+- **Language:** Python 3
