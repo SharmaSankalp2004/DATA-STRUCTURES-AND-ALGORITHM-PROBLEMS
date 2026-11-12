@@ -1,0 +1,95 @@
+# 114. Flatten Binary Tree to Linked List
+
+## 📌 Problem Statement
+
+Given the root of a binary tree, flatten the tree into a linked list in-place.
+
+The flattened tree should follow the same order as a **Preorder Traversal**:
+
+- Root
+- Left subtree
+- Right subtree
+
+All nodes must be connected using the `right` pointer, and all `left` pointers must be `None`.
+
+## 💡 Approach: Reverse Preorder Traversal (Recursion)
+
+We use a recursive approach that processes the tree in **Right → Left → Root** order.
+
+A variable `prev` keeps track of the previously processed node.
+
+### Algorithm
+
+1. Initialize `self.prev = None`.
+2. If the current node is `None`, return.
+3. Recursively flatten the right subtree.
+4. Recursively flatten the left subtree.
+5. Connect the current node's `right` pointer to `self.prev`.
+6. Set the current node's `left` pointer to `None`.
+7. Update `self.prev` to the current node.
+
+
+
+## 🔍 Example
+
+**Input:**
+
+```text
+       1
+      / \
+     2   5
+    / \   \
+   3   4   6
+```
+
+**Output:**
+
+```text
+1
+ \
+  2
+   \
+    3
+     \
+      4
+       \
+        5
+         \
+          6
+```
+
+**Explanation:**
+
+The binary tree is flattened into a linked list following preorder traversal:
+
+`1 → 2 → 3 → 4 → 5 → 6`
+
+All left pointers are set to `None`.
+
+## ⏱️ Complexity Analysis
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | Each node is visited exactly once. |
+| Auxiliary Space | O(h) | Recursive call stack, where h is the tree height. |
+
+- Best case (balanced tree): O(log n) auxiliary space.
+- Worst case (skewed tree): O(n) auxiliary space.
+
+## 🧠 Key Concepts
+
+- Binary Trees
+- Depth First Search (DFS)
+- Recursion
+- Reverse Preorder Traversal
+- In-place Tree Modification
+
+## 🚀 Key Takeaway
+
+The key idea is to traverse the tree in reverse preorder (Right → Left → Root).
+
+By maintaining a `prev` pointer, each node can be connected to the previously processed node without creating an additional linked list.
+
+**LeetCode:** 114 – Flatten Binary Tree to Linked List  
+**Difficulty:** Medium  
+**Language:** Python 3
