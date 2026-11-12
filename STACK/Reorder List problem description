@@ -1,0 +1,86 @@
+# 143. Reorder List
+
+## 📌 Problem Statement
+
+You are given the head of a singly linked list. Reorder the list in-place to follow this pattern:
+
+`L0 → L1 → L2 → ... → Ln-1 → Ln`
+
+Reorder it into:
+
+`L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → ...`
+
+You must modify the original linked list without changing the values of its nodes.
+
+## 💡 Approach: Find Middle + Reverse + Merge
+
+We solve this problem using three main steps:
+
+1. Find the middle of the linked list using the **Slow and Fast Pointer** technique.
+2. Reverse the second half of the linked list.
+3. Merge the first and reversed second halves alternately.
+
+
+
+## 🔍 Example
+
+**Input:**
+
+```text
+head = [1, 2, 3, 4, 5]
+```
+
+**Step 1: Find the middle**
+
+```text
+First half:  1 → 2 → 3
+Second half: 4 → 5
+```
+
+**Step 2: Reverse the second half**
+
+```text
+First half:  1 → 2 → 3
+Second half: 5 → 4
+```
+
+**Step 3: Merge alternately**
+
+```text
+1 → 5 → 2 → 4 → 3
+```
+
+**Output:**
+
+```text
+[1, 5, 2, 4, 3]
+```
+
+## ⏱️ Complexity Analysis
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | Finding middle, reversing and merging take linear time. |
+| Space | O(1) | Operations are performed in-place without extra data structures. |
+
+## 🧠 Key Concepts
+
+- Linked List
+- Slow and Fast Pointers
+- Reversing a Linked List
+- In-place Modification
+- Two Pointers
+
+## 🚀 Key Takeaway
+
+The Reorder List problem combines three important linked list techniques:
+
+1. Slow and Fast Pointers to find the middle.
+2. Pointer manipulation to reverse the second half.
+3. Two-pointer merging to combine both halves alternately.
+
+Understanding these three techniques makes several other linked list problems easier.
+
+**LeetCode:** 143 – Reorder List  
+**Difficulty:** Medium  
+**Language:** Python 3
