@@ -1,0 +1,68 @@
+# 71. Simplify Path
+
+## 📌 Problem Statement
+Given an absolute Unix-style file path, simplify it to its canonical path.
+
+The canonical path must:
+- Start with a single `/`.
+- Use only one slash (`/`) to separate directories.
+- Not contain `.` or `..` components.
+- Not end with a trailing slash unless it is the root directory.
+
+## 💡 Approach: Stack
+
+We use a **Stack** to simplify the given path.
+
+### Algorithm
+1. Split the path using `/` to get individual components.
+2. Initialize an empty stack.
+3. Iterate through each component:
+   - If the component is empty (`""`) or `"."`, ignore it.
+   - If the component is `".."`, remove the last directory from the stack if it exists.
+   - Otherwise, push the directory name onto the stack.
+4. Join all stack elements using `/`.
+5. Add a leading `/` to construct the canonical path.
+
+
+
+## 🔍 Example
+
+**Input:**
+```python
+path = "/home//foo/../bar/"
+```
+
+**Output:**
+```python
+"/home/bar"
+```
+
+**Explanation:**
+- `home` → Push into stack.
+- Empty component → Ignore.
+- `foo` → Push into stack.
+- `..` → Remove `foo`.
+- `bar` → Push into stack.
+- Final canonical path → `/home/bar`.
+
+## ⏱️ Complexity Analysis
+
+| Complexity | Value | Explanation |
+|---|---|---|
+| Time | O(n) | Traversing and processing path components. |
+| Space | O(n) | Stack stores directory names. |
+
+Here, `n` is the length of the input path.
+
+## 🧠 Key Concepts
+- Stack
+- String Manipulation
+- Path Normalization
+- LIFO (Last In, First Out)
+
+## 🚀 Key Takeaway
+The Stack data structure is ideal for simplifying Unix paths because `".."` always removes the most recently added directory.
+
+**LeetCode:** 71 – Simplify Path  
+**Difficulty:** Medium  
+**Language:** Python 3
