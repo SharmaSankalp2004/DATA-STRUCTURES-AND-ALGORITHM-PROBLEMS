@@ -1,0 +1,121 @@
+# Min Stack
+
+## Problem Description
+Design a stack data structure that supports the following operations in **O(1) time complexity**:
+
+1. `push(val)`: Push an element onto the stack.
+2. `pop()`: Remove the top element from the stack.
+3. `top()`: Return the top element.
+4. `getMin()`: Retrieve the minimum element currently present in the stack.
+
+All operations must work efficiently without traversing the entire stack.
+
+## Approach: Two Stacks
+
+We use two separate stacks:
+
+- **stack:** Stores all the elements.
+- **minStack:** Keeps track of the minimum element at every level of the stack.
+
+Whenever we push an element, we also push the smaller value between:
+- The new element.
+- The current minimum element.
+
+This ensures that the top of `minStack` always contains the minimum element of the current stack.
+
+### Algorithm
+
+**1. Push(val)**
+- Push `val` into the main stack.
+- If `minStack` is empty, push `val`.
+- Otherwise, compare `val` with the current minimum and push the smaller value into `minStack`.
+
+**2. Pop()**
+- Remove the top element from both stacks.
+
+**3. Top()**
+- Return the top element of the main stack.
+
+**4. GetMin()**
+- Return the top element of `minStack`.
+
+## Python Solution
+
+```python
+class MinStack:
+
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+
+        min_val = val if not self.minStack else min(val, self.minStack[-1])
+        self.minStack.append(min_val)
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.minStack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.minStack[-1]
+```
+
+## Example
+
+**Operations:**
+
+```python
+push(-2)
+push(0)
+push(-3)
+getMin()
+pop()
+top()
+getMin()
+```
+
+**Step-by-step execution:**
+
+| Operation | Main Stack | Min Stack | Result |
+|---|---|---|---|
+| push(-2) | [-2] | [-2] | — |
+| push(0) | [-2, 0] | [-2, -2] | — |
+| push(-3) | [-2, 0, -3] | [-2, -2, -3] | — |
+| getMin() | [-2, 0, -3] | [-2, -2, -3] | -3 |
+| pop() | [-2, 0] | [-2, -2] | — |
+| top() | [-2, 0] | [-2, -2] | 0 |
+| getMin() | [-2, 0] | [-2, -2] | -2 |
+
+**Output:**
+
+```python
+[null, null, null, -3, null, 0, -2]
+```
+
+## Complexity Analysis
+
+| Operation | Time Complexity |
+|---|---|
+| Push | O(1) |
+| Pop | O(1) |
+| Top | O(1) |
+| GetMin | O(1) |
+
+**Space Complexity:** O(n), because both stacks store one element for every pushed element.
+
+## Key Concepts Learned
+- Stack Data Structure (LIFO)
+- Auxiliary Stack
+- Maintaining Minimum Element
+- Constant Time Operations
+- Space-Time Trade-off
+
+## Conclusion
+The Two Stack approach allows us to retrieve the minimum element in O(1) time without searching through the entire stack. By maintaining the minimum value at every level, all four operations remain efficient.
+
+**LeetCode Problem:** Min Stack
