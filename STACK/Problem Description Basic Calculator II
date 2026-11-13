@@ -1,0 +1,155 @@
+# Basic Calculator II
+
+## Problem Description
+
+Given a string `s` representing a mathematical expression containing non-negative integers and the operators `+`, `-`, `*`, and `/`, evaluate the expression and return its result.
+
+The expression may contain spaces, and integer division should truncate toward zero.
+
+**Note:** Multiplication and division have higher precedence than addition and subtraction.
+
+## Approach: Stack
+
+We use a stack to handle operator precedence without using brackets or recursion.
+
+The main idea is:
+- Addition and subtraction are handled by pushing positive or negative numbers onto the stack.
+- Multiplication and division are performed immediately with the previous number stored at the top of the stack.
+- Finally, we calculate the sum of all elements in the stack.
+
+### Algorithm
+
+1. Initialize an empty stack.
+2. Initialize:
+   - `n = 0` to build multi-digit numbers.
+   - `op = '+'` to store the previous operator.
+3. Append an extra `+` to the string to process the final number.
+4. Iterate through every character:
+   - Ignore spaces.
+   - If the character is a digit, build the complete number using `n = n * 10 + int(c)`.
+   - When an operator is encountered, process the previous operator:
+     - `+`: Push the number into the stack.
+     - `-`: Push the negative of the number.
+     - `*`: Multiply the top stack element by the current number.
+     - `/`: Divide the top stack element by the current number, truncating toward zero.
+5. Update the operator and reset `n = 0`.
+6. Return the sum of all elements in the stack.
+
+## Python Solution
+
+```python
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+
+        n = 0
+        op = '+'
+        s += '+'
+
+        for c in s:
+            if c == ' ':
+                continue
+
+            if c.isdigit():
+                n = n * 10 + int(c)
+                continue
+
+            if op == '+':
+                stack.append(n)
+
+            elif op == '-':
+                stack.append(-n)
+
+            elif op == '*':
+                stack.append(stack.pop() * n)
+
+            elif op == '/':
+                stack.append(int(stack.pop() / n))
+
+            op = c
+            n = 0
+
+        return sum(stack)
+```
+
+## Example
+
+**Input:**
+
+```python
+s = "3+2*2"
+```
+
+**Step-by-step execution:**
+
+| Character | Operation | Stack |
+|---|---|---|
+| 3 | Build number 3 | [] |
+| + | Push 3 | [3] |
+| 2 | Build number 2 | [3] |
+| * | Push 2 | [3, 2] |
+| 2 | Build number 2 | [3, 2] |
+| + | Multiply 2 × 2 | [3, 4] |
+
+Finally:
+
+```python
+sum([3, 4]) = 7
+```
+
+**Output:**
+
+```python
+7
+```
+
+## Why Does This Approach Work?
+
+Consider the expression:
+
+```python
+"3 + 5 * 2 - 4"
+```
+
+The stack processes it as follows:
+
+- `3` → Push 3.
+- `+ 5` → Push 5.
+- `* 2` → Pop 5, multiply by 2, and push 10.
+- `- 4` → Push -4.
+
+Final stack:
+
+```python
+[3, 10, -4]
+```
+
+Final answer:
+
+```python
+3 + 10 - 4 = 9
+```
+
+Multiplication and division are performed immediately, while addition and subtraction are handled through positive and negative values. This automatically respects operator precedence.
+
+## Complexity Analysis
+
+- **Time Complexity:** O(n) — We traverse the string once. Calculating the final stack sum also takes O(n) time.
+- **Space Complexity:** O(n) — In the worst case, the stack can store O(n) numbers.
+
+## Key Concepts Learned
+
+- Stack Data Structure
+- Operator Precedence (BODMAS)
+- String Traversal
+- Handling Multi-digit Numbers
+- Integer Division
+- Arithmetic Expression Evaluation
+
+## Conclusion
+
+The Stack approach efficiently evaluates mathematical expressions by handling multiplication and division immediately and postponing addition and subtraction until the final summation.
+
+It solves the problem in linear time without requiring a separate pass for operator precedence.
+
+**LeetCode Problem:** Basic Calculator II
