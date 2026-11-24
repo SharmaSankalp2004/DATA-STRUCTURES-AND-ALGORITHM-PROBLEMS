@@ -1,0 +1,105 @@
+# Decode String – LeetCode 394
+
+## Problem Description
+Given an encoded string, return its decoded string.
+
+The encoding rule is `k[encoded_string]`, where the `encoded_string` inside the square brackets is repeated exactly `k` times.
+
+You may assume that the input string is always valid and that there are no extra white spaces. The original data does not contain digits, and digits are only used for repetition counts.
+
+### Example 1
+**Input:**
+```python
+s = "3[a]2[bc]"
+```
+**Output:**
+```python
+"aaabcbc"
+```
+
+### Example 2
+**Input:**
+```python
+s = "3[a2[c]]"
+```
+**Output:**
+```python
+"accaccacc"
+```
+
+### Example 3
+**Input:**
+```python
+s = "2[abc]3[cd]ef"
+```
+**Output:**
+```python
+"abcabccdcdcdef"
+```
+
+## Approach: Stack
+
+We use a stack to decode the string while handling nested brackets.
+
+### Algorithm
+1. Initialize an empty stack.
+2. Traverse each character of the input string.
+3. If the character is not `]`, push it onto the stack.
+4. When `]` is encountered:
+   - Pop characters until `[` is found to construct the substring.
+   - Remove the opening bracket `[`.
+   - Extract the repetition count by popping consecutive digits from the stack.
+   - Convert the repetition count into an integer.
+   - Repeat the substring `k` times and push the decoded string back onto the stack.
+5. Finally, join all elements of the stack to obtain the decoded string.
+
+## Python Solution
+
+```python
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+
+        for i in range(len(s)):
+            if s[i] != "]":
+                stack.append(s[i])
+
+            else:
+                substr = ""
+
+                while stack[-1] != "[":
+                    substr = stack.pop() + substr
+
+                stack.pop()  # remove "["
+
+                k = ""
+
+                while stack and stack[-1].isdigit():
+                    k = stack.pop() + k
+
+                stack.append(int(k) * substr)
+
+        return "".join(stack)
+```
+
+## Complexity Analysis
+
+Let:
+- `n` = length of the encoded string.
+- `m` = length of the decoded string.
+
+**Time Complexity:** Approximately `O(n + m)` for the stack operations and decoded output construction.
+
+**Space Complexity:** `O(m + n)` in the worst case, including the stack and decoded string.
+
+## Key Concepts
+- Stack Data Structure
+- String Manipulation
+- Nested Expressions
+- Integer Conversion
+- Repetition and Concatenation
+
+## LeetCode
+- **Problem:** 394 – Decode String
+- **Difficulty:** Medium
+- **Topic:** Stack / String
