@@ -53,34 +53,7 @@ We use a stack to decode the string while handling nested brackets.
    - Repeat the substring `k` times and push the decoded string back onto the stack.
 5. Finally, join all elements of the stack to obtain the decoded string.
 
-## Python Solution
 
-```python
-class Solution:
-    def decodeString(self, s: str) -> str:
-        stack = []
-
-        for i in range(len(s)):
-            if s[i] != "]":
-                stack.append(s[i])
-
-            else:
-                substr = ""
-
-                while stack[-1] != "[":
-                    substr = stack.pop() + substr
-
-                stack.pop()  # remove "["
-
-                k = ""
-
-                while stack and stack[-1].isdigit():
-                    k = stack.pop() + k
-
-                stack.append(int(k) * substr)
-
-        return "".join(stack)
-```
 
 ## Complexity Analysis
 
